@@ -111,6 +111,7 @@
 
 <!-- Oben Mitte -->
 <div class="layer links">
+  <div id="webRow" style="display:none"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 17.9A8 8 0 014.1 11H8v1a3 3 0 003 3zm6.9-2.5A2 2 0 0016 16h-1v-3a1 1 0 00-1-1H9v-2h2a1 1 0 001-1V7h2a2 2 0 002-2v-.4A8 8 0 0120 12a8 8 0 01-2.1 5.4z"/></svg><span id="web"></span></div>
   <div><svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 003-3V6a3 3 0 00-6 0v6a3 3 0 003 3zm5-3a5 5 0 01-10 0H5a7 7 0 006 6.9V22h2v-3.1A7 7 0 0019 12z"/></svg><span id="dc">discord.gg/deinserver</span></div>
 </div>
 <div class="layer welcome">Willkommen, <b id="wname">Spieler</b></div>
@@ -143,6 +144,8 @@
 <script>
 /* ===================== HIER ANPASSEN ===================== */
 var SERVER_NAME = "Night Roleplay";
+/* Website: leer lassen ("") = wird nicht angezeigt. Zum Aktivieren Adresse eintragen, z. B. "meine-seite.de" */
+var WEBSITE     = "";
 var DISCORD     = "https://discord.gg/Mj4unbCT2p";
 
 /* Link zu deinem Cloudflare Worker (siehe Anleitung), z. B. "https://steam.deinname.workers.dev" */
@@ -162,14 +165,14 @@ var TEAM = [
   { name: "[NR] Lenox",    role: "Serverinhaber",         avatar: "" },
   { name: "[NR] Luca",     role: "Stellv. Serverinhaber", avatar: "" },
   { name: "[NR] Homeless", role: "Serverleiter",          avatar: "" },
-  { name: "[NR] Anubis",    role: "Stellv. Serverleiter",            avatar: "" },
-  { name: "[NR] Don",    role: "Teamleiter",            avatar: "" }
+  { name: "[NR] Anubis",   role: "Stellv. Serverleiter",  avatar: "" },
+  { name: "[NR] Don",      role: "Teamleiter",            avatar: "" }
 ];
 /* ========================================================= */
 
 (function () {
-  document.getElementById("web").textContent = WEBSITE;
-  document.getElementById("dc").textContent  = DISCORD;
+  if (WEBSITE) { document.getElementById("web").textContent = WEBSITE; document.getElementById("webRow").style.display = "flex"; }
+  var dcEl = document.getElementById("dc"); if (dcEl) dcEl.textContent = DISCORD;
 
   // Regeln
   var ru = document.getElementById("rules");
